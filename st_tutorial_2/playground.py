@@ -27,7 +27,7 @@
 
 # %%
 global openai_api_key
-openai_api_key="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"
+openai_api_key=""
 
 # %% [markdown]
 # ## Prompt templates:
