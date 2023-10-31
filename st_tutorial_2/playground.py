@@ -99,4 +99,9 @@ def generate_response(topic):
 # ![Explanation](assets/explanation.png)
 
 # %% [markdown]
+# ### Ideas adicionales
 #
+# - Distintos templates: 
+#   - ¿Como contestarian distintas personas/agentes? (eg. filosofos)
+# - Uso de dropdown en streamlit
+# - Distintas variables dentro del template (eg. Recetas de cocina: tiempo e ingredientes)
