@@ -8,7 +8,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.11.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -26,8 +26,7 @@
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-global openai_api_key
-openai_api_key="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"
+openai_api_key=""
 
 # %% [markdown]
 # ## Paso 1. Instalamos tiktoken
@@ -35,13 +34,13 @@ openai_api_key="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"
 # - **BPE**: Byte Pair Encoding, que es un algoritmo de tokenización subpalabra utilizado en el procesamiento del lenguaje natural (NLP). 
 #   
 #     El algoritmo BPE funciona mediante la combinación iterativa de los pares más frecuentes de bytes o caracteres en un corpus de texto hasta que se alcanza un tamaño de vocabulario predefinido. 
-# 
+#
 #     Los subtokens resultantes se pueden utilizar para representar el texto original de una manera más compacta y eficiente puedes conocer más al respecto en este [link](https://towardsdatascience.com/byte-pair-encoding-subword-based-tokenization-algorithm-77828a70bee0)
-# 
-# ![Ejemplo de tokenizado](image.png)
+#
+# ![Ejemplo de tokenizado](assets/image.png)
 
 # %%
-%pip install tiktoken
+# %pip install tiktoken
 
 # %% [markdown]
 # ## Paso 2. Creamos una funcion para dividir el texto
@@ -83,14 +82,22 @@ split_text(text)
 # ### Paso 4. Definimos nuestra función de generate_response
 # - En esta ocasión definimos la temperatura como 0. (La temperatuta define que tan "creativo" queremos que sea nuestro modelo, es un valor de 0 a 2)
 #     !
-# 
+#
 # - Hacemos uso de nuestra funcion **split_text**
 # - Definimos un [Document]() por cada pedazo de texto
 # - Hacemos uso de [load_summarize_chain](https://python.langchain.com/docs/use_cases/summarization) esta tiene 3 modos:
-#   - **stuff**: 
-#   - **map_reduce**:
-#   - **refine**:
-# 
+#   - **stuff**: Combina todos los documentos de entrada en un solo prompt.
+#   - **map_reduce**: Resume cada documento individualmente en un paso "map" y luego combina los resultados en un paso "reduce".
+#   - **refine**: Similar a "map_reduce", pero permite la refinación adicional del resumen basado en un nuevo contexto.
+#
+#
+# - Ajustamos `temperature` a 0, ésto para sólo incluír información del texto dado.
+#
+#   `temperature` es un hyperparámetro que define que tan "creativo" será el resultado, se indica desde 0 hasta 2.
+#
+# ![temperature](assets/bing-chat-modes-1536x927.png)
+#
+#
 
 # %%
 from langchain import OpenAI
@@ -108,9 +115,12 @@ def generate_response(txt):
     chain = load_summarize_chain(llm, chain_type='map_reduce')
     return chain.run(docs)
 
+# %% tags=["active-ipynb"]
+# print(generate_response(text))
+
 # %% [markdown]
 # ## Paso 4. Creamos nuestra app en Streamlit usando la funcion generate_response (Es casi idéntica a la de st_tutorial_1)
-# 
+#
 # - crea un nuevo archivo app.py
 # - nuestra app hará uso de las funciones de streamlit:
 #   - [st.title](https://docs.streamlit.io/library/api-reference/text/st.title)
@@ -125,13 +135,12 @@ def generate_response(txt):
 # (También puedes ejecutarla ene una terminal aparte si así lo prefieres)
 
 # %%
-%%bash
-streamlit run app.py
+# !streamlit run app.py
 
 # %% [markdown]
 # ![Explanation](assets/explanation.png)
 
 # %% [markdown]
-# 
+#
 
 

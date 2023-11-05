@@ -92,8 +92,8 @@ def generate_response(topic):
 # ## Paso 5. Ejecuta la aplicación
 # (También puedes ejecutarla ene una terminal aparte si así lo prefieres)
 
-# %% language="bash"
-# streamlit run app.py
+# %%
+# !streamlit run app.py
 
 # %% [markdown]
 # ![Explanation](assets/explanation.png)
