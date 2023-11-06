@@ -1,0 +1,10 @@
+# List the VSCode extensions you want to be installed
+vscode:
+  extensions:
+    - congyiwu.vscode-jupytext    # Jupytext
+
+tasks:
+  - name: Setup Poetry environment
+    init: |
+      pip install poetry
+    command: poetry install
