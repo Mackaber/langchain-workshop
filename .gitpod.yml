@@ -1,0 +1,12 @@
+# List the VSCode extensions you want to be installed
+vscode:
+  extensions:
+    - https://github.com/Mackaber/vscode-jupytext/releases/download/v0.1.2/vscode-jupytext-0.1.2.vsix  # Jupytext
+    - ms-python.python
+    - ms-toolsai.jupyter
+
+#tasks:
+#  - name: Setup Poetry environment
+#    init: |
+#      pip install poetry
+#    command: poetry install
