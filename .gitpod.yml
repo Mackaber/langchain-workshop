@@ -12,6 +12,9 @@ tasks:
       pyenv global system
       pyenv rehash
 
+      # Install psycopg2 dependencies 
+      sudo apt -y install libpq-dev python3-dev
+
       # Install Poetry
       pip3 install poetry
     command: |
