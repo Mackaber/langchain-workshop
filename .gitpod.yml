@@ -5,8 +5,8 @@ vscode:
     - ms-python.python
     - ms-toolsai.jupyter
 
-#tasks:
-#  - name: Setup Poetry environment
-#    init: |
-#      pip install poetry
-#    command: poetry install
+tasks:
+  - name: Setup Poetry environment
+    init: |
+      pip install poetry
+    command: poetry install
