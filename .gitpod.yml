@@ -6,14 +6,14 @@ vscode:
     - ms-toolsai.jupyter
 
 tasks:
-  - name: Install Python 3.10.13
+  - name: Setup Python and Poetry
     init: |
-      if ! pyenv versions | grep -q 3.10.13; then
-        pyenv install 3.10.13
-      fi
+      # Ensure that the desired Python version is installed
+      pyenv install -f 3.10.13
       pyenv global 3.10.13
-    command: python --version
-  - name: Setup Poetry environment
-    init: |
+      pyenv rehash
+
+      # Install Poetry
       pip install poetry
-    command: poetry install
+    command: |
+      poetry install
