@@ -35,7 +35,6 @@
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-global openai_api_key
 openai_api_key = ""
 
 # %% [markdown]
