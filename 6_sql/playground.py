@@ -65,7 +65,7 @@ prompt = ChatPromptTemplate.from_template(template)
 
 # %%
 from langchain.chat_models import ChatOpenAI
-model = ChatOpenAI(openai_api_key="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")
+model = ChatOpenAI(openai_api_key="")
 
 # %%
 from langchain.schema.runnable import RunnablePassthrough

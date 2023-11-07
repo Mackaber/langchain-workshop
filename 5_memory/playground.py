@@ -23,7 +23,7 @@
 # ### Memory
 
 # %%
-openai_api_key="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"
+openai_api_key=""
 
 # %%
 from langchain.memory import ConversationBufferMemory

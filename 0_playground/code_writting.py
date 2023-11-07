@@ -30,7 +30,7 @@ Return only python code in Markdown format, e.g.:
 ....
 ```"""
 
-model = ChatOpenAI(openai_api_key="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")
+model = ChatOpenAI(openai_api_key="")
 
 db_template
 
