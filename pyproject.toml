@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "lanchain-workshop"
+name = "langchain-workshop"
 version = "0.1.0"
 description = ""
 authors = ["Mackaber <x@mackaber.me>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10.13"
 openai = "^1.1.1"
 streamlit = "^1.28.1"
 tiktoken = "^0.5.1"
@@ -14,6 +14,8 @@ pypdf = "^3.17.0"
 chromadb = "^0.4.15"
 psycopg2 = "^2.9.9"
 langchain-experimental = "^0.0.38"
+jupyter = "^1.0.0"
+ipykernel = "^6.26.0"
 
 
 [build-system]

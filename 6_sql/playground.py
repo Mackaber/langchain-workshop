@@ -21,7 +21,7 @@
 # %%
 from langchain.utilities import SQLDatabase
 
-db = SQLDatabase.from_uri("postgresql://Mackaber:G5PyrWgnhdE1@ep-rough-violet-21813379.us-east-2.aws.neon.tech/chinook?sslmode=require&options=endpoint%3Dep-rough-violet-2181337")
+db = SQLDatabase.from_uri("postgresql://Mackaber:G5PyrWgnhdE1@ep-rough-violet-21813379.us-east-2.aws.neon.tech/chinook")
 
 #
 
