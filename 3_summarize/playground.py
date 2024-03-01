@@ -8,9 +8,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.15.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -26,7 +26,7 @@
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-openai_api_key=""
+openai_api_key="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"
 
 # %% [markdown]
 # ## Paso 1. Instalamos tiktoken
@@ -100,19 +100,21 @@ split_text(text)
 #
 
 # %%
-from langchain import OpenAI
-from langchain.docstore.document import Document
+from langchain_openai import ChatOpenAI
+from langchain_community.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
 
 def generate_response(txt):
     # Instantiate the LLM model
-    llm = OpenAI(temperature=0, openai_api_key=openai_api_key)
+    llm = ChatOpenAI(temperature=0, openai_api_key=openai_api_key)
     # Split text
     texts = split_text(txt)
-    # Create multiple documents
-    docs = [Document(page_content=t) for t in texts]
+    # Load texts
+    loader = TextLoader(texts)
+    docs = loader.load()
     # Text summarization
-    chain = load_summarize_chain(llm, chain_type='map_reduce')
+    chain = load_summarize_chain(llm,chain_type='map_reduce')
     return chain.run(docs)
 
 # %% tags=["active-ipynb"]

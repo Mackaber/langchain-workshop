@@ -8,9 +8,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.15.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -26,7 +26,7 @@
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-openai_api_key=""
+openai_api_key="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"
 
 # %% [markdown]
 # ## Prompt templates:
@@ -51,20 +51,26 @@ openai_api_key=""
 # ## Paso 1. Definamos un Template
 
 # %%
-template = """
-  Como un profesor experto quiero que me propongas 
+template_text = """
+  Como un profesor experto quiero que me propongas
   una ruta de aprendizaje para aprender {topic}
 """
 
 # %%
-from langchain.llms import OpenAI
-from langchain import PromptTemplate
+template_text
 
-def generate_response(topic):
-  llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-  prompt = PromptTemplate(input_variables=['topic'], template=template)
-  prompt_query = prompt.format(topic=topic)
-  return llm(prompt_query)
+# %%
+from langchain_openai import ChatOpenAI
+from langchain import PromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
+
+def generate_response(input_text):
+    model = ChatOpenAI(temperature=0.7, openai_api_key=openai_api_key)
+    template = ChatPromptTemplate.from_template(template_text)
+    chain = template | model
+    # model = ChatAnthropic(anthropic_api_key=anthropic_api_key)
+    response = chain.invoke({"topic": input_text})
+    return response
 
 # %% tags=["active-ipynb"]
 # topic = """

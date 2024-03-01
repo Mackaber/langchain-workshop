@@ -8,9 +8,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.15.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -35,7 +35,7 @@
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-openai_api_key = ""
+openai_api_key = "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"
 
 # %% [markdown]
 # ## Paso 2. Instala las librerías necesarias
@@ -51,13 +51,15 @@ openai_api_key = ""
 # (OpenAI no es el único modelo que podemos usar)
 
 # %%
-from langchain.llms import OpenAI
-# from langchain.llms import Anthropic
+from langchain_openai import ChatOpenAI
+# from langchain_anthropic import ChatAnthropic
 
 def generate_response(input_text):
-  llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-  # llm = Anthropic(anthropic_api_key=anthropic_api_key)
-  return llm(input_text)
+    model = ChatOpenAI(temperature=0.7, openai_api_key=openai_api_key)
+    chain = model
+    # model = ChatAnthropic(anthropic_api_key=anthropic_api_key)
+    response = chain.invoke(input_text)
+    return response.content
 
 # %% tags=["active-ipynb"]
 # prompt = """
