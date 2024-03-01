@@ -8,9 +8,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.15.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -26,7 +26,7 @@
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-openai_api_key=""
+openai_api_key = ""
 
 # %% [markdown]
 # ## Prompt templates:
@@ -61,7 +61,7 @@ from langchain.llms import OpenAI
 from langchain import PromptTemplate
 
 def generate_response(topic):
-  llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
+  llm = OpenAI(temperature=0.7, model_name="gpt-3.5-turbo-instruct", openai_api_key=openai_api_key)
   prompt = PromptTemplate(input_variables=['topic'], template=template)
   prompt_query = prompt.format(topic=topic)
   return llm(prompt_query)

@@ -8,9 +8,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.15.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -55,7 +55,7 @@ from langchain.llms import OpenAI
 # from langchain.llms import Anthropic
 
 def generate_response(input_text):
-  llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
+  llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-instruct")
   # llm = Anthropic(anthropic_api_key=anthropic_api_key)
   return llm(input_text)
 

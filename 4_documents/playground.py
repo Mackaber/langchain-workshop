@@ -8,9 +8,9 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.11.2
+#       jupytext_version: 1.15.2
 #   kernelspec:
-#     display_name: Python 3
+#     display_name: Python 3 (ipykernel)
 #     language: python
 #     name: python3
 # ---
@@ -42,7 +42,7 @@ DATABASES = {
 # <span style="color:red;">IMPORTANTE: Nunca subas código a github con llaves privadas!</span>
 
 # %%
-openai_api_key=""
+openai_api_key = "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"
 
 # %% [markdown]
 # ## Paso 1. Instalamos pypdf y chromadb
@@ -120,7 +120,7 @@ def generate_response(uploaded_file, query_text):
   # Create retriever interface
   retriever = db.as_retriever()
   # Create QA chain
-  qa = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=openai_api_key), chain_type='stuff', retriever=retriever)
+  qa = RetrievalQA.from_chain_type(llm=OpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-instruct"), chain_type='stuff', retriever=retriever)
   # qa= RetrievalQA | llm | retriever
   return qa.run(query_text)
 
